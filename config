@@ -66,9 +66,13 @@ font-6 = "Roboto:size=9:weight=bold;0"
 font-7 = "Noto Sans:size=11;1"
 font-8 = "Tamsyn:pixelsize=12;0"
 
+font-X = Font Awesome 5 Free: style=Solid: pixelsize=11
+font-Y = Font Awesome 5 Brands: pixelsize=11
+font-Z = Material Icons: style=Regular: pixelsize=13; 2
+
 modules-left = i3
 modules-center = cpu memory filesystem  
-modules-right = pulseaudio system-bluetooth-bluetoothctl battery temperature wireless date
+modules-right = pulseaudio-control battery temperature wireless date
 
 #MODULES REMOVED FOR LACK OF NEED = xkeyboard
 
@@ -294,7 +298,28 @@ label-muted-foreground = #666
 
 ; Right and Middle click
 click-right = pavucontrol
-; click-middle = 
+; click-middle =
+;
+
+
+[module/pulseaudio-control]
+type = custom/script
+tail = true
+# format-underline = ${colors.cyan}
+label-padding = 2
+label-foreground = ${colors.foreground}
+
+# Icons mixed from Font Awesome 5 and Material Icons
+# You can copy-paste your options for each possible action, which is more
+# trouble-free but repetitive, or apply only the relevant ones (for example
+# --sink-blacklist is only needed for next-sink).
+exec = pulseaudio-control --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_00_1b.0.analog-stereo:  Speakers" --sink-nickname "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo:  Headphones" listen
+click-right = exec pavucontrol &
+click-left = pulseaudio-control togmute
+click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
+scroll-up = pulseaudio-control --volume-max 130 up
+scroll-down = pulseaudio-control --volume-max 130 down
+ 
 
 [settings]
 screenchange-reload = true
