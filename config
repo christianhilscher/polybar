@@ -171,12 +171,14 @@ format-connected = <label-connected>
 # format-connected-underline = #9f78e1
 #label-connected =WiFi: %essid%
 #label-connected = %{A1:nm-connection-editor:}   %essid%%{A}
-label-connected =  %downspeed%  %upspeed%
+label-connected = %{A1:nm-connection-editor:}  %downspeed%  %upspeed%%{A}
 
 format-disconnected = <label-disconnected>
 #format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = not connected
 #label-disconnected-foreground = ${colors.foreground-alt}
+
+click-right = nm-connection-editor
 
 [module/wired]
 type = internal/network
@@ -324,7 +326,6 @@ click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_01_00.1
 scroll-up = pulseaudio-control --volume-max 130 up
 scroll-down = pulseaudio-control --volume-max 130 down
 # https://github.com/marioortizmanero/polybar-pulseaudio-control
- 
 
 [settings]
 screenchange-reload = true
