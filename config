@@ -76,9 +76,9 @@ modules-right = pulseaudio-control battery temperature wireless date
 
 #MODULES REMOVED FOR LACK OF NEED = xkeyboard
 
-tray-position = right
+#tray-position = right
 #tray-padding = 2
-tray-padding = 0 
+#tray-padding = 0 
 #tray-transparent = true
 #tray-background = #0063ff
 
@@ -170,12 +170,12 @@ interval = 3.0
 format-connected = <label-connected>
 # format-connected-underline = #9f78e1
 #label-connected =WiFi: %essid%
-label-connected = %{A1:nm-connection-editor:}   %essid%%{A}
+#label-connected = %{A1:nm-connection-editor:}   %essid%%{A}
+label-connected =  %downspeed%  %upspeed%
 
-format-disconnected =
-#format-disconnected = <label-disconnected>
+format-disconnected = <label-disconnected>
 #format-disconnected-underline = ${self.format-connected-underline}
-#label-disconnected = %ifname% disconnected
+label-disconnected = not connected
 #label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/wired]
@@ -204,16 +204,16 @@ interval = 1
 date = " %d.%m "
 date-alt = 
 
-time = %H:%M
-time-alt = %H:%M:%S
+#time = %H:%M
+#time-alt = %H:%M:%S
 
 #time-alt = %H:%M
-#time = %H:%M:%S
+time = %H:%M:%S
 
 # format-underline = #0a6cf5
 
-# label = %date %time% 
-label =   %time%     %date%
+# label = %time% 
+label =   %time%
 
 [module/battery]
 type = internal/battery
@@ -222,18 +222,22 @@ battery = BAT0
 adapter = ACAD
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <label-charging>
+label-charging =  %percentage%%
 format-charging-underline = #bada55
 
-format-full = Fully charged
+format-full = 
 
 format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
 
 format-full-underline = #5ac18e
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 animation-charging-0 = 
 #animation-charging-1 = 
@@ -251,7 +255,7 @@ format-warn = <label-warn>
 # format-warn-underline = ${self.format-underline}
 
 label =  %temperature-c%
-label-warn = TEMP: %temperature-c%
+label-warn =   %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 
